@@ -20,3 +20,5 @@ training_out = np.array([
     [F],
 ])
 
+# Generates random weights between -1 & 1 for array matching size of input pattern
+weights = 2 * np.random.random((3, 1)) - 1
