@@ -22,3 +22,7 @@ training_out = np.array([
 
 # Generates random weights between -1 & 1 for array matching size of input pattern
 weights = 2 * np.random.random((3, 1)) - 1
+
+# Sigmoid Activation Function
+def sigmoid(x):
+    return 1 / (1 + np.exp(-x))
