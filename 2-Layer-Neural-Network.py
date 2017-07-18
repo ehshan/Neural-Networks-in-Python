@@ -29,11 +29,12 @@ def sigmoid(x):
     return 1 / (1 + np.exp(-x))
 
 
+# Compute the gradient of the error
 def gradient(x):
     return x * (1 - x)
 
 
-# 1000 epochs to train on
+# 10000 epochs to train on
 for epoch in range(10000):
     # Forward propagation - X axis is weight Y axis is error
     # Minimization (error) problem
