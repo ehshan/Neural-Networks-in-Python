@@ -31,8 +31,10 @@ def sigmoid(x):
     return 1 / (1 + np.exp(-x))
 
 
+# Compute the gradient of the error
 def gradient(x):
     return x * (1 - x)
+
 
 # 10000 epochs
 for epoch in range(10000):
@@ -49,7 +51,7 @@ for epoch in range(10000):
     layer_2_error = training_out - hidden_layer_2
 
     # Computes the mean of elements across dimensions of array
-    print("epoch: ", epoch, "Error: ", str(np.mean(np.abs(layer_2_error ))), "\n")
+    print("epoch: ", epoch, "Error: ", str(np.mean(np.abs(layer_2_error))), "\n")
 
     # The plot of the weight(x) value against the error(y)
     layer_2_error_gradient = layer_2_error * gradient(hidden_layer_2)
