@@ -40,20 +40,20 @@ for epoch in range(10000):
     input_layer = training_in
 
     # Applied sigmoid function to product of input and weights
-    output_layer = sigmoid(np.dot(input_layer, weights))
+    hidden_layer = sigmoid(np.dot(input_layer, weights))
     # print("Hidden: ", hidden_layer, "\n")  # values in hidden layer
 
     # Error is the training out - output
-    error = training_out - output_layer
+    error = training_out - hidden_layer
     # print("Raw Error: ", "\n", error, "\n")  # the raw error
 
     # Computes the mean of error across dimensions of array
     print("epoch: ", epoch, "Error: ", str(np.mean(np.abs(error))), "\n")
 
     # Product of the error the slope at (X,Y)
-    error_gradient = error * gradient(output_layer)
+    error_gradient = error * gradient(hidden_layer)
 
     # Update the weights
     weights += np.dot(input_layer.T, error_gradient)
 
-print("Final Output:", "\n", output_layer)
+print("Final Output:", "\n", hidden_layer)
