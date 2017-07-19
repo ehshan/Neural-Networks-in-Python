@@ -37,37 +37,41 @@ def gradient(x):
 
 
 # The learning rate parameter - multiplied with weight adjustment
-lr = 1
+lrs = [0.001, 0.01, 0.1, 1, 10, 100, 1000]
 
-# 10000 epochs
-for epoch in range(10000):
-    # Input layer
-    input_layer = training_in
+for lr in lrs:
+    print("learning rate is:", str(lr))
 
-    # First hidden layer
-    hidden_layer_1 = sigmoid(np.dot(input_layer, input_weights))
+    # 10000 epochs for each learning rate
+    for epoch in range(10000):
+        # Input layer
+        input_layer = training_in
 
-    # Second hidden layer
-    hidden_layer_2 = sigmoid(np.dot(hidden_layer_1, hidden_weights))
+        # First hidden layer
+        hidden_layer_1 = sigmoid(np.dot(input_layer, input_weights))
 
-    # Calculate the error
-    layer_2_error = training_out - hidden_layer_2
+        # Second hidden layer
+        hidden_layer_2 = sigmoid(np.dot(hidden_layer_1, hidden_weights))
 
-    # Computes the mean error for every 1000 epochs
-    if (epoch % 1000) == 0:
-        print("epoch: ", epoch, "Error: ", str(np.mean(np.abs(layer_2_error))))
+        # Calculate the error
+        layer_2_error = training_out - hidden_layer_2
 
-    # The plot of the weight(x) value against the error(y)
-    layer_2_error_gradient = layer_2_error * gradient(hidden_layer_2)
+        # Computes the mean error for every 1000 epochs
+        if (epoch % 1000) == 0:
+            print("epoch:", epoch, "Error:", str(np.mean(np.abs(layer_2_error))))
 
-    # Calculate the error in the first error
-    layer_1_error = layer_2_error_gradient.dot(hidden_weights.T)
+        # The plot of the weight(x) value against the error(y)
+        layer_2_error_gradient = layer_2_error * gradient(hidden_layer_2)
 
-    # Compute the error gradient in the first layer
-    layer_1_error_gradient = layer_1_error * gradient(hidden_layer_1)
+        # Calculate the error in the first error
+        layer_1_error = layer_2_error_gradient.dot(hidden_weights.T)
 
-    # Update the weights (= x = x + gradient) for both layers
-    hidden_weights += lr * np.dot(hidden_layer_1.T, layer_2_error_gradient)
-    input_weights += lr * np.dot(input_layer.T, layer_1_error_gradient)
+        # Compute the error gradient in the first layer
+        layer_1_error_gradient = layer_1_error * gradient(hidden_layer_1)
 
-print("\n", "Final Output:", "\n", hidden_layer_2)
+        # Update the weights (= x = x + gradient) for both layers
+        hidden_weights += lr * np.dot(hidden_layer_1.T, layer_2_error_gradient)
+        input_weights += lr * np.dot(input_layer.T, layer_1_error_gradient)
+
+    print("\n", "Final Output for", str(lr), "\n", hidden_layer_2)
+    print("\n")
