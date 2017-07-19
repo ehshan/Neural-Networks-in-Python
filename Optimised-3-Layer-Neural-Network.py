@@ -19,3 +19,8 @@ training_out = np.array([
     [F],
     [F],
 ])
+
+# Random weights for array matching size of input pattern
+input_weights = 2 * np.random.random((3, 4)) - 1
+# Random weights for first hidden layer
+hidden_weights = 2 * np.random.random((4, 1)) - 1
