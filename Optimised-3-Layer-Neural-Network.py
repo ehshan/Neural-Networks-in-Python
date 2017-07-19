@@ -36,6 +36,9 @@ def gradient(x):
     return x * (1 - x)
 
 
+# The learning rate parameter - multiplied with weight adjustment
+lr = 1
+
 # 10000 epochs
 for epoch in range(10000):
     # Input layer
@@ -64,7 +67,7 @@ for epoch in range(10000):
     layer_1_error_gradient = layer_1_error * gradient(hidden_layer_1)
 
     # Update the weights (= x = x + gradient) for both layers
-    hidden_weights += np.dot(hidden_layer_1.T, layer_2_error_gradient)
-    input_weights += np.dot(input_layer.T, layer_1_error_gradient)
+    hidden_weights += lr * np.dot(hidden_layer_1.T, layer_2_error_gradient)
+    input_weights += lr * np.dot(input_layer.T, layer_1_error_gradient)
 
 print("\n", "Final Output:", "\n", hidden_layer_2)
