@@ -50,8 +50,9 @@ for epoch in range(10000):
     # Calculate the error
     layer_2_error = training_out - hidden_layer_2
 
-    # Computes the mean of elements across dimensions of array
-    print("epoch: ", epoch, "Error: ", str(np.mean(np.abs(layer_2_error))), "\n")
+    # Computes the mean error for every 1000 epochs
+    if (epoch % 1000) == 0:
+        print("epoch: ", epoch, "Error: ", str(np.mean(np.abs(layer_2_error))))
 
     # The plot of the weight(x) value against the error(y)
     layer_2_error_gradient = layer_2_error * gradient(hidden_layer_2)
@@ -66,4 +67,4 @@ for epoch in range(10000):
     hidden_weights += np.dot(hidden_layer_1.T, layer_2_error_gradient)
     input_weights += np.dot(input_layer.T, layer_1_error_gradient)
 
-print("Final Output:", "\n", hidden_layer_2)
+print("\n", "Final Output:", "\n", hidden_layer_2)
