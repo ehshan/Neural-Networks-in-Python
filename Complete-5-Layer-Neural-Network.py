@@ -1,4 +1,5 @@
 import numpy as np
+from sklearn.model_selection import train_test_split
 
 # generate sample data
 np.random.seed(1)
@@ -32,3 +33,7 @@ data_labels = np.hstack((np.zeros(data_points), np.ones(data_points), np.ones(da
 # One-hot encoding for data labels
 onehot_labels = np.zeros((data_labels.shape[0], 3)).astype(int)
 onehot_labels[np.arange(len(data_labels)), data_labels.astype(int)] = 1
+
+# split data to train/test
+training_data, test_data, training_labels, test_labels = \
+    train_test_split(data_features, onehot_labels, test_size=.1, random_state=12)
