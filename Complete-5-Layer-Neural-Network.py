@@ -28,3 +28,7 @@ data_features = np.vstack((c1, c2, c3)).astype(np.float32)
 
 # Even distribution of labels -> 0, 1, 2
 data_labels = np.hstack((np.zeros(data_points), np.ones(data_points), np.ones(data_points) + 1))
+
+# One-hot encoding for data labels
+onehot_labels = np.zeros((data_labels.shape[0], 3)).astype(int)
+onehot_labels[np.arange(len(data_labels)), data_labels.astype(int)] = 1
