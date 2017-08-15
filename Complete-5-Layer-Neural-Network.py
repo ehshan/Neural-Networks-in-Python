@@ -22,3 +22,9 @@ c1 = np.random.multivariate_normal(c1_mean, c1_cov, data_points)
 c2 = np.random.multivariate_normal(c2_mean, c2_cov, data_points)
 # Cluster 3
 c3 = np.random.multivariate_normal(c3_mean, c3_cov, data_points)
+
+# All holding all data for 3 clusters
+data_features = np.vstack((c1, c2, c3)).astype(np.float32)
+
+# Even distribution of labels -> 0, 1, 2
+data_labels = np.hstack((np.zeros(data_points), np.ones(data_points), np.ones(data_points) + 1))
