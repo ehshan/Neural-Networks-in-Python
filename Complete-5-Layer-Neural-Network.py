@@ -37,3 +37,10 @@ onehot_labels[np.arange(len(data_labels)), data_labels.astype(int)] = 1
 # split data to train/test
 training_data, test_data, training_labels, test_labels = \
     train_test_split(data_features, onehot_labels, test_size=.1, random_state=12)
+
+
+# Rectifier Activation function
+# in <0 -> out=0
+# in >0 -> out=in
+def relu_activation(x):
+    return np.maximum(x, 0)
