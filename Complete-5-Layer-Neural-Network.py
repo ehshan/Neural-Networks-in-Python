@@ -44,3 +44,9 @@ training_data, test_data, training_labels, test_labels = \
 # in >0 -> out=in
 def relu_activation(x):
     return np.maximum(x, 0)
+
+
+# normalise output array so sum of values=1
+def softmax(x):
+    x_exp = np.exp(x)
+    return x_exp / np.sum(x_exp, axis=1, keepdims=True)
