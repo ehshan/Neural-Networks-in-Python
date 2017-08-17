@@ -50,3 +50,12 @@ def relu_activation(x):
 def softmax(x):
     x_exp = np.exp(x)
     return x_exp / np.sum(x_exp, axis=1, keepdims=True)
+
+
+# Loss function - takes probability array from softmax function & the target label
+def cross_entropy_loss(prob_array, target_label):
+    i = np.argmax(target_label, axis=1).astype(int)
+    predicted_probability = prob_array[np.arange(len(prob_array)), i]
+    log_predicted = np.log(predicted_probability)
+    loss = -1.0 * np.sum(log_predicted / len(log_predicted))
+    return loss
