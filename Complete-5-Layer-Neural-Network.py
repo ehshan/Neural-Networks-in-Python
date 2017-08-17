@@ -59,3 +59,10 @@ def cross_entropy_loss(prob_array, target_label):
     log_predicted = np.log(predicted_probability)
     loss = -1.0 * np.sum(log_predicted / len(log_predicted))
     return loss
+
+
+# Regularization loss
+def l2_regularisation(l2_lambda, weight_1, weight_2):
+    weight_1_loss = 0.5 * l2_lambda * np.sum(weight_1 * weight_1)
+    weight_2_loss = 0.5 * l2_lambda * np.sum(weight_2 * weight_2)
+    return weight_1_loss + weight_2_loss
