@@ -74,3 +74,8 @@ num_labels = training_labels.shape[1]
 num_features = training_data.shape[1]
 learning_rate = .01
 reg_lambda = .01
+
+# Layer 1 array matches number of hidden nodes
+layer1_weights = np.random.normal(0, 1, [num_features, hidden_nodes])
+# Layer 2 array matches number of labels
+layer2_weights = np.random.normal(0, 1, [hidden_nodes, num_labels])
