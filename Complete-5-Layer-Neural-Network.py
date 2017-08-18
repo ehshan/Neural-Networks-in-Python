@@ -61,7 +61,7 @@ def cross_entropy_loss(prob_array, target_label):
     return loss
 
 
-# Regularization loss
+# Regularisation loss
 def l2_regularisation(l2_lambda, weight_1, weight_2):
     weight_1_loss = 0.5 * l2_lambda * np.sum(weight_1 * weight_1)
     weight_2_loss = 0.5 * l2_lambda * np.sum(weight_2 * weight_2)
@@ -79,3 +79,7 @@ reg_lambda = .01
 layer1_weights = np.random.normal(0, 1, [num_features, hidden_nodes])
 # Layer 2 array matches number of labels
 layer2_weights = np.random.normal(0, 1, [hidden_nodes, num_labels])
+
+# Biases for layers
+layer1_biases = np.zeros((1, hidden_nodes))
+layer2_biases = np.zeros((1, num_labels))
