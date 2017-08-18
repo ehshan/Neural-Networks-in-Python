@@ -66,3 +66,11 @@ def l2_regularisation(l2_lambda, weight_1, weight_2):
     weight_1_loss = 0.5 * l2_lambda * np.sum(weight_1 * weight_1)
     weight_2_loss = 0.5 * l2_lambda * np.sum(weight_2 * weight_2)
     return weight_1_loss + weight_2_loss
+
+
+# Assign Network Variables
+hidden_nodes = 5
+num_labels = training_labels.shape[1]
+num_features = training_data.shape[1]
+learning_rate = .01
+reg_lambda = .01
