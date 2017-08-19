@@ -86,7 +86,6 @@ layer2_biases = np.zeros((1, num_labels))
 
 # 10000 epochs
 for epoch in range(10000):
-
     # NETWORK STRUCTURE
     # Input layer
     input_layer = np.dot(training_data, layer1_weights)
@@ -97,5 +96,11 @@ for epoch in range(10000):
     # Output pattern
     output_prob = softmax(output_layer)
 
+    # Loss between output and labels
     loss = cross_entropy_loss(output_prob, training_labels)
     loss += l2_regularisation(reg_lambda, layer1_weights, layer2_weights)
+
+    # Calculate the error with network output
+    # Divide the average of each individual label loss by number of observationsit
+    output_error = (output_prob - training_labels) / output_prob.shape[0]
+
