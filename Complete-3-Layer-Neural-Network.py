@@ -96,3 +96,6 @@ for epoch in range(10000):
     output_layer = np.dot(hidden_layer, layer2_weights) + layer2_biases
     # Output pattern
     output_prob = softmax(output_layer)
+
+    loss = cross_entropy_loss(output_prob, training_labels)
+    loss += l2_regularisation(reg_lambda, layer1_weights, layer2_weights)
