@@ -101,6 +101,11 @@ for epoch in range(10000):
     loss += l2_regularisation(reg_lambda, layer1_weights, layer2_weights)
 
     # Calculate the error with network output
-    # Divide the average of each individual label loss by number of observationsit
+    # Divide the average of each individual label loss by number of observations
     output_error = (output_prob - training_labels) / output_prob.shape[0]
+
+    # Calculate the error in hidden layer
+    hidden_error = np.dot(output_error, layer2_weights.T)
+    # Compensate for ReLu activation function
+    hidden_error[hidden_layer <= 0] = 0
 
