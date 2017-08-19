@@ -83,3 +83,16 @@ layer2_weights = np.random.normal(0, 1, [hidden_nodes, num_labels])
 # Biases for layers
 layer1_biases = np.zeros((1, hidden_nodes))
 layer2_biases = np.zeros((1, num_labels))
+
+# 10000 epochs
+for epoch in range(10000):
+
+    # NETWORK STRUCTURE
+    # Input layer
+    input_layer = np.dot(training_data, layer1_weights)
+    # Hidden Layer
+    hidden_layer = relu_activation(input_layer + layer2_biases)
+    # Output layer
+    output_layer = np.dot(hidden_layer, layer2_weights) + layer2_biases
+    # Output pattern
+    output_prob = softmax(output_layer)
