@@ -109,3 +109,7 @@ for epoch in range(10000):
     # Compensate for ReLu activation function
     hidden_error[hidden_layer <= 0] = 0
 
+    # Error gradient on layer 2 weights and biases
+    layer_2_error_gradient = np.dot(hidden_layer.T, output_error)
+    layer_2_bias_gradient = np.sum(output_error, axis=0, keepdims=True)
+
