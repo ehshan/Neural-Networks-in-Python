@@ -110,9 +110,13 @@ for epoch in range(10000):
     hidden_error[hidden_layer <= 0] = 0
 
     # Error gradient on layer 2 weights and biases
-    layer_2_error_gradient = np.dot(hidden_layer.T, output_error)
-    layer_2_bias_gradient = np.sum(output_error, axis=0, keepdims=True)
+    layer2_weight_gradient = np.dot(hidden_layer.T, output_error)
+    layer2_bias_gradient = np.sum(output_error, axis=0, keepdims=True)
 
     # Error gradient on layer 1 weights and biases
-    layer_1_error_gradient = np.dot(training_data.T, hidden_error)
-    layer_1_bias_gradient = np.sum(hidden_error, axis=0, keepdims=True)
+    layer1_weight_gradient = np.dot(training_data.T, hidden_error)
+    layer1_bias_gradient = np.sum(hidden_error, axis=0, keepdims=True)
+
+    # Add regularisation to weight gradients
+    layer2_weight_gradient += reg_lambda * layer2_weights
+    layer1_weight_gradient += reg_lambda * layer1_weights
