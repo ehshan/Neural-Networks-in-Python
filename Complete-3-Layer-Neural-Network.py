@@ -126,3 +126,7 @@ for epoch in range(10000):
     layer1_biases -= learning_rate * layer1_bias_gradient
     layer2_weights -= learning_rate * layer2_weight_gradient
     layer2_biases -= learning_rate * layer2_bias_gradient
+
+    # Computes the loss & mean error for every 1000 epochs
+    if (epoch % 1000) == 0:
+        print("epoch:", epoch, "Error:", str(np.mean(np.abs(output_error))), "Loss:", loss)
