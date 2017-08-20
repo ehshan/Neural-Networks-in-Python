@@ -90,7 +90,7 @@ for epoch in range(10000):
     # Input layer
     input_layer = np.dot(training_data, layer1_weights)
     # Hidden Layer
-    hidden_layer = relu_activation(input_layer + layer2_biases)
+    hidden_layer = relu_activation(input_layer + layer1_biases)
     # Output layer
     output_layer = np.dot(hidden_layer, layer2_weights) + layer2_biases
     # Output pattern
@@ -120,3 +120,9 @@ for epoch in range(10000):
     # Add regularisation to weight gradients
     layer2_weight_gradient += reg_lambda * layer2_weights
     layer1_weight_gradient += reg_lambda * layer1_weights
+
+    # UPDATES THE WEIGHTS AND BIASES
+    layer1_weights -= learning_rate * layer1_weight_gradient
+    layer1_biases -= learning_rate * layer1_bias_gradient
+    layer2_weights -= learning_rate * layer2_weight_gradient
+    layer2_biases -= learning_rate * layer2_bias_gradient
