@@ -138,3 +138,12 @@ def accuracy(predictions, labels):
     correct_predictions = np.sum(prediction_boolean)
     accuracy = 100.0 * correct_predictions / predictions.shape[0]
     return accuracy
+
+# Compute the probability distributions of the test set using trained network (weights+biases)
+input_layer = np.dot(test_data, layer1_weights)
+hidden_layer = relu_activation(input_layer + layer1_biases)
+scores = np.dot(hidden_layer, layer2_weights) + layer2_biases
+probabilities = softmax(scores)
+
+# print results
+print('Test accuracy: {0}%'.format(accuracy(probabilities, test_labels)))
