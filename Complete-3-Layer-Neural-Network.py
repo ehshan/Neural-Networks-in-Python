@@ -46,7 +46,7 @@ def relu_activation(x):
     return np.maximum(x, 0)
 
 
-# normalise output array so sum of values=1
+# normalise output array to probabilities - so sum of values=1
 def softmax(x):
     x_exp = np.exp(x)
     return x_exp / np.sum(x_exp, axis=1, keepdims=True)
@@ -130,3 +130,11 @@ for epoch in range(10000):
     # Computes the loss & mean error for every 1000 epochs
     if (epoch % 1000) == 0:
         print("epoch:", epoch, "Error:", str(np.mean(np.abs(output_error))), "Loss:", loss)
+
+
+# For labels compute the no correct prediction over total predictions
+def accuracy(predictions, labels):
+    prediction_boolean = np.argmax(predictions, 1) == np.argmax(labels, 1)
+    correct_predictions = np.sum(prediction_boolean)
+    accuracy = 100.0 * correct_predictions / predictions.shape[0]
+    return accuracy
