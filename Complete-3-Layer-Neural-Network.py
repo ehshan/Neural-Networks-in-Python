@@ -1,5 +1,6 @@
 import numpy as np
 from sklearn.model_selection import train_test_split
+import matplotlib.pyplot as plt
 
 # generate sample data
 np.random.seed(1)
@@ -29,6 +30,14 @@ data_features = np.vstack((c1, c2, c3)).astype(np.float32)
 
 # Even distribution of labels -> 0, 1, 2
 data_labels = np.hstack((np.zeros(data_points), np.ones(data_points), np.ones(data_points) + 1))
+
+# VISUALISATION
+# Set the graph size
+plt.figure(figsize=(12, 8))
+# Generate distribution of data points
+plt.scatter(data_features[:, 0], data_features[:, 1], c=data_labels, alpha=.5)
+# Show graph
+plt.show()
 
 # One-hot encoding for data labels
 onehot_labels = np.zeros((data_labels.shape[0], 3)).astype(int)
@@ -147,3 +156,10 @@ probabilities = softmax(scores)
 
 # print results
 print('Test accuracy: {0}%'.format(accuracy(probabilities, test_labels)))
+
+# Show number of correction and incorrect classifications
+labels_plot = np.argmax(test_labels, axis=1)
+predictions = np.argmax(probabilities, axis=1)
+plt.figure(figsize=(12, 8))
+plt.scatter(test_data[:, 0], test_data[:, 1], c=predictions == labels_plot - 1, alpha=.5)
+plt.show()
